@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>2026 | Saheel Properties</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // NEW: Requested Vibrant Blue
+                        brandBlue: '#3641F5',
+                        brandDark: '#2028c2', // Darker shade for hover/contrast
+                        brandLight: '#EEF2FF', // Very light blue for background tint
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'float-medium': 'float 6s ease-in-out infinite reverse',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* --- BACKGROUND CONFIGURATION --- */
+        body {
+            /* Using the Building Render Image */
+            background-image: url('https://saheelproperties.com/wp-content/uploads/2025/07/3619_Megapolis_Saheel_Image_08_11zon-1_11zon-1-scaled.webp');
+            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #050511; 
+            overflow: hidden;
+            height: 100vh;
+            /* Prevent rubber-banding on mobile */
+            overscroll-behavior: none; 
+        }
+
+        /* Overlay to make text readable against the building image */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            /* background: rgba(54, 65, 245, 0.8); #3641F5 with opacity */
+            /* mix-blend-mode: multiply; */
+            z-index: -1;
+        }
+
+        /* --- 3D Card Styling --- */
+        .pro-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            box-shadow: 
+                0 30px 60px -15px rgba(0, 0, 0, 0.4), 
+                0 0 40px -5px rgba(54, 65, 245, 0.4);
+            transform-style: preserve-3d; /* CRITICAL for 3D elements */
+        }
+
+        /* --- Text Gradient --- */
+        .text-gradient {
+            background: linear-gradient(135deg, #3641F5 0%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Floating Elements (The 3D Icons) --- */
+        .floating-icon {
+            position: absolute;
+            pointer-events: none; /* Let clicks pass through */
+            z-index: 10;
+            filter: drop-shadow(0 10px 15px rgba(54, 65, 245, 0.3));
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center selection:bg-brandBlue selection:text-white">
+
+    <div class="absolute w-[800px] h-[800px] bg-brandBlue/20 rounded-full blur-[100px] animate-pulse-slow -z-10"></div>
+
+    <div id="tilt-card" style="transform-style: preserve-3d;" 
+         data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" 
+         class="pro-card relative rounded-[2rem] p-6 md:p-14 w-[90%] max-w-xl flex flex-col items-center text-center transition-all duration-300">
+        
+        <div class="floating-icon top-[-30px] left-[-20px] md:top-[-40px] md:left-[-40px] w-24 md:w-32 animate-float-slow" 
+             style="transform: translateZ(70px);">
+            <img src="image_10.png" alt="Icon" class="w-full opacity-90">
+        </div>
+
+        <div class="floating-icon bottom-[-20px] right-[-20px] md:bottom-[-30px] md:right-[-30px] w-28 md:w-40 animate-float-medium" 
+             style="transform: translateZ(40px) rotate(-10deg);">
+             <img src="image_10.png" alt="Icon" class="w-full opacity-80">
+        </div>
+        
+        <div class="w-full flex justify-center mb-6 md:mb-10" style="transform: translateZ(30px)">
+            <div class="bg-white px-6 py-3 rounded-xl shadow-sm border border-slate-100/50">
+                <img src="https://saheelproperties.com/wp-content/uploads/2023/02/SAHEEL-PRPOERTIES-BEST-BUILDER-IN-01PUNE.png" alt="Saheel Properties" class="h-8 md:h-12 object-contain">
+            </div>
+        </div>
+
+        <div class="mb-2" style="transform: translateZ(50px)">
+            <p class="text-slate-500 font-bold tracking-[0.2em] text-[10px] md:text-sm uppercase mb-2">Building Future Spaces</p>
+            <h1 class="text-7xl md:text-8xl font-black tracking-tighter text-gradient leading-none">
+                2026
+            </h1>
+        </div>
+
+        <div class="mb-8 md:mb-10 max-w-sm md:max-w-md" style="transform: translateZ(30px)">
+            <h2 class="text-xl md:text-3xl font-bold text-slate-800 mb-2">
+                Happy New Year
+            </h2>
+            <p class="text-slate-600 font-medium text-sm md:text-base leading-relaxed">
+                Wishing the entire <span class="text-brandBlue font-black uppercase">Saheel Properties</span> team a year of groundbreaking success.
+            </p>
+        </div>
+
+        <button onclick="celebrate()" 
+                class="group relative inline-flex items-center justify-center px-8 py-3 md:px-10 md:py-4 font-bold text-white transition-all duration-200 bg-brandBlue font-sans rounded-full hover:bg-brandDark hover:shadow-lg hover:shadow-brandBlue/40 hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brandBlue text-sm md:text-base shadow-md"
+                style="transform: translateZ(60px)"> <span class="mr-2">Start the Year</span>
+            <svg class="w-5 h-5 transition-transform duration-200 transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+        </button>
+
+        <div class="mt-8 md:mt-12 mb-1 text-brandBlue font-bold italic font-sans text-sm md:text-base" style="transform: translateZ(20px)">
+            From Rajat
+        </div>
+
+        <div class="text-[10px] text-slate-400 font-mono" style="transform: translateZ(10px)">
+            Saheel Properties &copy; 2026
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        // 1. Initialize 3D Tilt with Mobile Gyroscope Support
+        VanillaTilt.init(document.querySelector("#tilt-card"), {
+            max: 12,            // Max tilt angle
+            speed: 400,         // Movement speed
+            glare: true,        // Add light reflection
+            "max-glare": 0.3,   // Intensity of reflection
+            scale: 1.02,        // Zoom effect on hover
+            gyroscope: true,    // Enable phone movement interaction
+            gyroscopeMinAngleX: -45,
+            gyroscopeMaxAngleX:  45,
+            gyroscopeMinAngleY: -45,
+            gyroscopeMaxAngleY:  45,
+        });
+
+        // 2. Confetti Logic (Matching Brand Colors)
+        function celebrate() {
+            var end = Date.now() + 2500;
+            // Using the requested #3641F5 + White
+            var colors = ['#3641F5', '#8890FF', '#ffffff'];
+
+            (function frame() {
+                // Launch from left
+                confetti({
+                    particleCount: 4,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: colors,
+                    shapes: ['square', 'circle'],
+                    scalar: 1.2
+                });
+                // Launch from right
+                confetti({
+                    particleCount: 4,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: colors,
+                    shapes: ['square', 'circle'],
+                    scalar: 1.2
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    </script>
+</body>
+</html>
