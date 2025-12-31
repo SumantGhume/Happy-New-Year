@@ -14,10 +14,10 @@
             theme: {
                 extend: {
                     colors: {
-                        // NEW: Requested Vibrant Blue
-                        brandBlue: '#3641F5',
-                        brandDark: '#2028c2', // Darker shade for hover/contrast
-                        brandLight: '#EEF2FF', // Very light blue for background tint
+                        // UPDATED: Standard Vibrant Blue
+                        brandBlue: '#2563EB', 
+                        brandDark: '#1D4ED8', // Darker blue for hover
+                        brandLight: '#EFF6FF', // Very light blue tint
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
@@ -54,13 +54,11 @@
             overscroll-behavior: none; 
         }
 
-        /* Overlay to make text readable against the building image */
+        /* Overlay to make text readable */
         body::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            /* background: rgba(54, 65, 245, 0.8); #3641F5 with opacity */
-            /* mix-blend-mode: multiply; */
             z-index: -1;
         }
 
@@ -72,23 +70,23 @@
             border: 1px solid rgba(255, 255, 255, 1);
             box-shadow: 
                 0 30px 60px -15px rgba(0, 0, 0, 0.4), 
-                0 0 40px -5px rgba(54, 65, 245, 0.4);
-            transform-style: preserve-3d; /* CRITICAL for 3D elements */
+                0 0 40px -5px rgba(37, 99, 235, 0.4); /* Blue glow */
+            transform-style: preserve-3d;
         }
 
-        /* --- Text Gradient --- */
+        /* --- Text Gradient (Updated to Blue) --- */
         .text-gradient {
-            background: linear-gradient(135deg, #3641F5 0%, #6366f1 100%);
+            background: linear-gradient(135deg, #2563EB 0%, #60A5FA 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        /* --- Floating Elements (The 3D Icons) --- */
+        /* --- Floating Elements --- */
         .floating-icon {
             position: absolute;
-            pointer-events: none; /* Let clicks pass through */
+            pointer-events: none;
             z-index: 10;
-            filter: drop-shadow(0 10px 15px rgba(54, 65, 245, 0.3));
+            filter: drop-shadow(0 10px 15px rgba(37, 99, 235, 0.3));
         }
     </style>
 </head>
@@ -99,8 +97,6 @@
     <div id="tilt-card" style="transform-style: preserve-3d;" 
          data-tilt data-tilt-max="8" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2" 
          class="pro-card relative rounded-[2rem] p-6 md:p-14 w-[90%] max-w-xl flex flex-col items-center text-center transition-all duration-300">
-        
-        
         
         <div class="w-full flex justify-center mb-6 md:mb-10" style="transform: translateZ(30px)">
             <div class="bg-white px-6 py-3 rounded-xl shadow-sm border border-slate-100/50">
@@ -157,11 +153,11 @@
             gyroscopeMaxAngleY:  45,
         });
 
-        // 2. Confetti Logic (Matching Brand Colors)
+        // 2. Confetti Logic (Updated to Blue)
         function celebrate() {
             var end = Date.now() + 2500;
-            // Using the requested #3641F5 + White
-            var colors = ['#3641F5', '#8890FF', '#ffffff'];
+            // Using Standard Blue colors
+            var colors = ['#2563EB', '#60A5FA', '#ffffff'];
 
             (function frame() {
                 // Launch from left
